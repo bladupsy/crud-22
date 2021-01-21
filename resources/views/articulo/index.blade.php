@@ -1,8 +1,10 @@
 @extends('layouts.plantillabase');
 
 @section('contenido')
-<a href="articulos/create" class="btn btn-danger">Crear</a>
-<table class="table table-dark table-striped mt-4">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<a href="articulos/create" class="btn btn-danger ">Crear</a>
+</div>
+<table class="table table-striped table-hover mt-4">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -18,7 +20,7 @@
     <tbody>
         @foreach ($articulos as $articulo) 
             <tr>
-           <th scope="row">
+         
             <td>{{ $articulo->id}} </td>
             <td>{{ $articulo->codigo}} </td>
             <td>{{$articulo->descripcion}} </td>
@@ -27,11 +29,11 @@
             <td>
             
             <a href="/articulos/{{$articulo->id}}/edit" class="btn btn-info">Editar</a>
-            <form action="{{ action ('ArticuloController@destroy', $articulo->id)}}" method="POST"> 
+           
                 @csrf
                 @method('DELETE')
-                <input type="submit" class="btn btn-danger " value="Eliminar">
-                </form> 
+                <button type="submit" class="btn btn-danger " value="Eliminar">Borrar</button>
+                
              </td>
              </th>
              </tr>

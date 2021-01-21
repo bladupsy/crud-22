@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticuloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    
+
 });
 
 Route::resource('articulos','App\Http\Controllers\ArticuloController' );
 
-Route::delete('articulo','ArticuloController@destroy');
+Route::delete('articulo',  [ArticuloController::class, 'articulo']);
+
+//Route::get('/articulo',  [ArticuloController::class, 'articulo']);
