@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('articulos','App\Http\Controllers\ArticuloController' );
+
+Route::delete('articulo','ArticuloController@destroy');

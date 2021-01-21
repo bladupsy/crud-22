@@ -16,16 +16,25 @@
 
     </thead>
     <tbody>
-        @foreach ($articulos as $articulo)
+        @foreach ($articulos as $articulo) 
+            <tr>
+           <th scope="row">
             <td>{{ $articulo->id}} </td>
             <td>{{ $articulo->codigo}} </td>
             <td>{{$articulo->descripcion}} </td>
             <td>{{$articulo->cantidad}} </td>
             <td>{{ $articulo->precio}} </td>
             <td>
-                <a class="btn btn-info">Editar</a>
-                <a class="btn btn-danger">Borrar</a>
+            
+            <a href="/articulos/{{$articulo->id}}/edit" class="btn btn-info">Editar</a>
+            <form action="{{ action ('ArticuloController@destroy', $articulo->id)}}" method="POST"> 
+                @csrf
+                @method('DELETE')
+                <input type="submit" class="btn btn-danger " value="Eliminar">
+                </form> 
              </td>
+             </th>
+             </tr>
 
         @endforeach
     </tbody>

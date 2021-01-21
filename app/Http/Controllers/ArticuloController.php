@@ -67,7 +67,9 @@ class ArticuloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $articulo = Articulo::find($id);
+        return view('articulo.edit')->with('articulo', $articulo);
+        //return View::make('articulo.edit')->with('articulo', $articulo);
     }
 
     /**
@@ -79,7 +81,14 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $articulo = Articulo::find($id);
+        $articulo->codigo = $request->get('codigo');
+        $articulo->descripcion = $request->get('descripcion');
+        $articulo->cantidad = $request->get('cantidad');
+        $articulo->precio = $request->get('precio');
+        $articulo->save();
+        
+        return redirect('/articulos');
     }
 
     /**
@@ -90,6 +99,10 @@ class ArticuloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articulo = Articulo::findOrFail($id);
+
+        $articulo->delete();
+        return redirect('/articulos');
     }
+
 }
